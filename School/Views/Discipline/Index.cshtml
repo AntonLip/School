@@ -1,0 +1,39 @@
+﻿@model IEnumerable<School.Models.DbModels.Discipline>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Список дисциплин школы</h1>
+
+<p>
+    <a asp-action="Create">Добавить дисциплину</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Системный номер дисциплины
+            </th>
+            <th>
+                Название дисциплины
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DisciplineName)
+            </td>
+            <td>
+                @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,43 @@
+﻿@model LoginViewModel
+
+@{
+    ViewBag.Title = "Вход";
+}
+<div class="container">
+	<div class="d-flex justify-content-center h-100">
+		<div class="card">
+			<div class="card-header">
+				<h3>Вход</h3>
+				<div class="d-flex justify-content-end social_icon">
+					<span><i class="fab fa-facebook-square"></i></span>
+					<span><i class="fab fa-google-plus-square"></i></span>
+					<span><i class="fab fa-twitter-square"></i></span>
+				</div>
+			</div>
+			<div class="card-body">
+				<form method="post">
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-user"></i></span>
+						</div>
+						<input  asp-for="Email" type="email"class="form-control" placeholder="имя пользователя">
+						
+					</div>
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-key"></i></span>
+						</div>
+						<input asp-for="Password" type="password" class="form-control" placeholder="пароль">
+					</div>
+					<div class="row align-items-center remember">
+						<input asp-for="RememberMe" type="checkbox">Запомнить меня
+					</div>
+					<div class="form-group">
+						<button type="submit" value="Войти" class="btn float-right login_btn"></button>
+					</div>
+				</form>
+			</div>
+			
+		</div>
+	</div>
+</div>

@@ -1,0 +1,39 @@
+﻿@model IEnumerable<School.Models.DbModels.Grade>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Список классов школы</h1>
+
+<p>
+    <a asp-action="Create">Добавить класс</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Системный номер класса
+            </th>
+            <th>
+                Номер и буква класса
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GradeName)
+            </td>
+            <td>                
+                @Html.ActionLink("Delete", "Delete", new {  id=item.Id })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
