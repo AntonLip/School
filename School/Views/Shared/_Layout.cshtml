@@ -1,15 +1,21 @@
 ﻿<!DOCTYPE html>
 @inject SignInManager<AppUser> signInManager;
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - School</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="*PATH_TO_YOUR_STYLE_FOLDER*/bootstrap.min.css">
+
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/Login.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/School.styles.css" asp-append-version="true" />
 </head>
+
 <body>
     <header class="p-3 bg-dark text-white">
         <div class="container">
@@ -17,11 +23,25 @@
 
 
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                    <li><a href="#" class="nav-link px-2 text-secondary">Главная</a></li>
-                    <li><a asp-action="Index" asp-controller="Timetable" class="nav-link px-2 text-white">Расписание</a></li>
-                    <li><a asp-action="Index" asp-controller="Discipline" class="nav-link px-2 text-white">Дисциплины</a></li>
-                    <li><a asp-action="Index" asp-controller="Grade" class="nav-link px-2 text-white">Классы</a></li>
-                    <li><a asp-action="Index" asp-controller="Admin" class="nav-link px-2 text-white">Работа с пользователями</a></li>
+                    <li><a asp-action="Index" asp-controller="Home" class="nav-link px-2 text-secondary">Главная</a>
+                    </li>
+                    @if (signInManager.IsSignedIn(User))
+                    {
+                        if (User.IsInRole("Admin") || User.IsInRole("Teacher") || User.IsInRole("Pupil"))
+                        {
+                            <li><a asp-action="Index" asp-controller="Timetable" class="nav-link px-2 text-white">Расписание</a>
+                            </li>
+                        }
+                        if (User.IsInRole("Admin"))
+                        {
+                            <li><a asp-action="Index" asp-controller="Discipline"
+                            class="nav-link px-2 text-white">Дисциплины</a></li>
+                            <li><a asp-action="Index" asp-controller="Grade" class="nav-link px-2 text-white">Классы</a></li>
+
+                            <li><a asp-action="Index" asp-controller="Admin" class="nav-link px-2 text-white">Работа с
+                                    пользователями</a></li>
+                        }
+                    }
                 </ul>
 
                 <div class="text-end">
@@ -37,7 +57,7 @@
                     else
                     {
                         <div class="text-end">
-                            <a asp-action="Login" asp-controller="Account" class="btn btn-outline-dark me-2">Войти</a>
+                            <a asp-action="Login" asp-controller="Account" class="btn text-white me-2">Войти</a>
                         </div>
                     }
                 </div>
@@ -54,7 +74,7 @@
 
     <footer class="border-top footer bg-dark text-white">
         <div class="container">
-            &copy; 2022 - School - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2022 - Сайт школы
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -62,4 +82,5 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
+
 </html>

@@ -1,62 +1,436 @@
-﻿@model IEnumerable<School.Models.DbModels.Timetable>
+﻿@model List<School.Models.DtoModels.TimetableDto>
+@inject SignInManager<AppUser> signInManager;
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1 class="text-center">Расписание занятий на неделю</h1>
+@if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+{
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+}
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<div class="container">
-    <div class="timetable-img text-center">
-        <img src="img/content/timetable.png" alt="">
-    </div><div class="table-responsive">
-        <table class="table table-bordered text-center">
-            <thead>
-                <tr class="bg-light-gray">
-                    <th class="text-uppercase">Номер урока</th>
-                    <th class="text-uppercase">Понедельник</th>
-                    <th class="text-uppercase">Вторник</th>
-                    <th class="text-uppercase">Среда</th>
-                    <th class="text-uppercase">Четверг</th>
-                    <th class="text-uppercase">Пятница</th>
-                    <th class="text-uppercase">Суббота</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="align-middle">09:00am</td>
-                    <td>
-                        <span class="bg-sky padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13">
-                            Dance
-                        </span>
-                        <div class="margin-10px-top font-size14">
-                            9:00-10:00
-                        </div>
-                        <div class="font-size13 text-light-gray">
-                            Ivana Wong
-                        </div>
-                    </td>
-                    <td>
-                        <span class="bg-green padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Yoga</span><div class="margin-10px-top font-size14">9:00-10:00</div><div class="font-size13 text-light-gray">Marta Healy</div>
-                    </td>
-                    <td>
-                        <span class="bg-yellow padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">
-                            Music
-                        </span>
-                        <div class="margin-10px-top font-size14">9:00-10:00</div><div class="font-size13 text-light-gray">Ivana Wong</div>
-                    </td>
-                    <td> <span class="bg-sky padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Dance</span><div class="margin-10px-top font-size14">9:00-10:00</div><div class="font-size13 text-light-gray">Ivana Wong</div></td>
-                    <td> <span class="bg-purple padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Art</span><div class="margin-10px-top font-size14">9:00-10:00</div><div class="font-size13 text-light-gray">Kate Alley</div></td>
-                    <td> <span class="bg-pink padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">English</span><div class="margin-10px-top font-size14">9:00-10:00</div><div class="font-size13 text-light-gray">James Smith</div></td>
-                </tr>
-                <tr><td class="align-middle">10:00am</td><td> <span class="bg-yellow padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Music</span><div class="margin-10px-top font-size14">10:00-11:00</div><div class="font-size13 text-light-gray">Ivana Wong</div></td><td class="bg-light-gray"></td><td> <span class="bg-purple padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Art</span><div class="margin-10px-top font-size14">10:00-11:00</div><div class="font-size13 text-light-gray">Kate Alley</div></td><td> <span class="bg-green padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Yoga</span><div class="margin-10px-top font-size14">10:00-11:00</div><div class="font-size13 text-light-gray">Marta Healy</div></td><td> <span class="bg-pink padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">English</span><div class="margin-10px-top font-size14">10:00-11:00</div><div class="font-size13 text-light-gray">James Smith</div></td><td class="bg-light-gray"></td></tr>
-                <tr><td class="align-middle">11:00am</td><td> <span class="bg-lightred padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Break</span><div class="margin-10px-top font-size14">11:00-12:00</div></td><td> <span class="bg-lightred padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Break</span><div class="margin-10px-top font-size14">11:00-12:00</div></td><td> <span class="bg-lightred padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Break</span><div class="margin-10px-top font-size14">11:00-12:00</div></td><td> <span class="bg-lightred padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Break</span><div class="margin-10px-top font-size14">11:00-12:00</div></td><td> <span class="bg-lightred padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Break</span><div class="margin-10px-top font-size14">11:00-12:00</div></td><td> <span class="bg-lightred padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Break</span><div class="margin-10px-top font-size14">11:00-12:00</div></td></tr>
-                <tr><td class="align-middle">12:00pm</td><td class="bg-light-gray"></td><td> <span class="bg-purple padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Art</span><div class="margin-10px-top font-size14">12:00-1:00</div><div class="font-size13 text-light-gray">Kate Alley</div></td><td> <span class="bg-sky padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Dance</span><div class="margin-10px-top font-size14">12:00-1:00</div><div class="font-size13 text-light-gray">Ivana Wong</div></td><td> <span class="bg-yellow padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Music</span><div class="margin-10px-top font-size14">12:00-1:00</div><div class="font-size13 text-light-gray">Ivana Wong</div></td><td class="bg-light-gray"></td><td> <span class="bg-green padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Yoga</span><div class="margin-10px-top font-size14">12:00-1:00</div><div class="font-size13 text-light-gray">Marta Healy</div></td></tr>
-                <tr><td class="align-middle">01:00pm</td><td> <span class="bg-pink padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">English</span><div class="margin-10px-top font-size14">1:00-2:00</div><div class="font-size13 text-light-gray">James Smith</div></td><td> <span class="bg-yellow padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Music</span><div class="margin-10px-top font-size14">1:00-2:00</div><div class="font-size13 text-light-gray">Ivana Wong</div></td><td class="bg-light-gray"></td><td> <span class="bg-pink padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">English</span><div class="margin-10px-top font-size14">1:00-2:00</div><div class="font-size13 text-light-gray">James Smith</div></td><td> <span class="bg-green padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Yoga</span><div class="margin-10px-top font-size14">1:00-2:00</div><div class="font-size13 text-light-gray">Marta Healy</div></td><td> <span class="bg-yellow padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Music</span><div class="margin-10px-top font-size14">1:00-2:00</div><div class="font-size13 text-light-gray">Ivana Wong</div></td></tr>
-            </tbody>
-        </table>
+
+
+@if (Model is null)
+{
+    <div>
+        <form method="post" action="/Timetable/GetTimetableByGrade">
+            <div class="form-group">
+                <label class="control-label">Выберите класс</label>
+                @Html.DropDownList("id", ViewBag.Grades as SelectList)
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Показать расписание" class="btn btn-primary" />
+            </div>
+        </form>
     </div>
-</div>
+}
+else
+{
+    <div class="container">
+        <div class="timetable-img text-center">
+            <img src="img/content/timetable.png" alt="">
+        </div>
+        <div class="table-responsive">
+            <table class="table table-bordered text-center">
+                <thead>
+                    <tr class="bg-light-gray">
+                        <th class="text-uppercase">Time</th>
+                        <th class="text-uppercase">Monday</th>
+                        <th class="text-uppercase">Tuesday</th>
+                        <th class="text-uppercase">Wednesday</th>
+                        <th class="text-uppercase">Thursday</th>
+                        <th class="text-uppercase">Friday</th>
+                        <th class="text-uppercase">Saturday</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="align-middle">09:00am</td>
+                        <td> <span class="bg-sky padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-black font-size16 xs-font-size13">
+                              @if (Model.FirstOrDefault(p => p.DayOfWeek == DayOfWeek.Monday && p.LessonNumber ==
+                                1) is null)
+                                {
+                                    
+                                }
+                                else
+                                {
+                                    @Model.FirstOrDefault(p => p.DayOfWeek == DayOfWeek.Monday && p.LessonNumber ==
+                                1).DisciplineName;
+                                }
+                            </span>
+                        </td>
+                        <td>
+                            <span class="bg-green padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom   font-size16  xs-font-size13">
+                                @if(Model.FirstOrDefault(p => p.DayOfWeek == DayOfWeek.Tuesday && p.LessonNumber == 1) is null)
+                                {
+
+                                }
+                                else
+                                {
+                                    @Model.First(p => p.DayOfWeek == DayOfWeek.Tuesday && p.LessonNumber == 1).DisciplineName
+                                }
+                            </span>
+                        </td>
+                        <td> 
+                            <span class="bg-yellow padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom   font-size16  xs-font-size13">
+                                @if (Model.FirstOrDefault(p => p.DayOfWeek == DayOfWeek.Wednesday && p.LessonNumber == 1) is null)
+                                {
+                                    
+                                }
+                                else
+                                {
+                                    @Model.FirstOrDefault(p => p.DayOfWeek == DayOfWeek.Wednesday && p.LessonNumber == 1).DisciplineName;
+                                }
+                            </span>
+                        </td>
+                        <td> 
+                            <span class="bg-sky padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom   font-size16  xs-font-size13">
+                                @if (Model.FirstOrDefault(p => p.DayOfWeek == DayOfWeek.Thursday && p.LessonNumber == 1) is null)
+                                {
+                                    
+                                }
+                                else
+                                {
+                                    @Model.FirstOrDefault(p => p.DayOfWeek == DayOfWeek.Thursday && p.LessonNumber == 1).DisciplineName;
+                                }
+                            </span>
+                        </td>
+                        <td> 
+                            <span   class="bg-purple padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom   font-size16  xs-font-size13">
+                                @if (Model.FirstOrDefault(p => p.DayOfWeek == DayOfWeek.Friday && p.LessonNumber == 1) is null)
+                                {
+                                    
+                                }
+                                else
+                                {
+                                    @Model.FirstOrDefault(p => p.DayOfWeek == DayOfWeek.Friday && p.LessonNumber ==  1).DisciplineName;
+                                }
+                            </span>
+                        </td>
+                        <td> 
+                            <span  class="bg-pink padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom   font-size16  xs-font-size13">
+                                @if (Model.FirstOrDefault(p => p.DayOfWeek == DayOfWeek.Saturday && p.LessonNumber == 1) is null)
+                                {
+                                    
+                                }
+                                else
+                                {
+                                    @Model.FirstOrDefault(p => p.DayOfWeek == DayOfWeek.Saturday && p.LessonNumber == 1).DisciplineName;
+                                }
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="align-middle">10:00am</td>
+                        <td>
+                            <span class="bg-sky padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-black font-size16 xs-font-size13">
+                                @if (Model.FirstOrDefault(p => p.DayOfWeek == DayOfWeek.Monday && p.LessonNumber == 2) is null)
+                                {
+                                    
+                                }
+                                else
+                                {
+                                    @Model.FirstOrDefault(p => p.DayOfWeek == DayOfWeek.Monday && p.LessonNumber == 2).DisciplineName;
+                                }
+                            </span>
+                        </td>
+                        <td>
+                            <span  class="bg-green padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom   font-size16  xs-font-size13">
+                               @if (Model.FirstOrDefault(p => p.DayOfWeek == DayOfWeek.Tuesday && p.LessonNumber == 2) is null)
+                                {
+                                    
+                                }
+                                else
+                                {
+                                    @Model.FirstOrDefault(p => p.DayOfWeek == DayOfWeek.Tuesday && p.LessonNumber == 2).DisciplineName;
+                                }
+                            </span>
+                        </td>
+                        <td> <span class="bg-yellow padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom   font-size16  xs-font-size13">
+                                @if (Model.FirstOrDefault(p => p.DayOfWeek == DayOfWeek.Wednesday && p.LessonNumber == 2) is null)
+                                {
+                                    
+                                }
+                                else
+                                {
+                                    @Model.FirstOrDefault(p => p.DayOfWeek == DayOfWeek.Wednesday && p.LessonNumber == 2).DisciplineName;
+                                }
+                               </span>
+                        </td>
+                        <td>
+                            <span class="bg-sky padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom   font-size16  xs-font-size13">
+                               @if (Model.FirstOrDefault(p => p.DayOfWeek == DayOfWeek.Thursday && p.LessonNumber == 2) is null)
+                                {
+                                    
+                                }
+                                else
+                                {
+                                    @Model.FirstOrDefault(p => p.DayOfWeek == DayOfWeek.Thursday && p.LessonNumber == 2).DisciplineName;
+                                }
+                            </span>
+                        </td>
+                        <td> 
+                            <span  class="bg-purple padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom   font-size16  xs-font-size13">
+                                
+                                @if (Model.FirstOrDefault(p => p.DayOfWeek == DayOfWeek.Friday && p.LessonNumber == 2) is null)
+                                {
+                                    
+                                }
+                                else
+                                {
+                                    @Model.FirstOrDefault(p => p.DayOfWeek == DayOfWeek.Friday && p.LessonNumber == 2).DisciplineName;
+                                }
+                            </span>
+                        </td>
+                        <td> 
+                            <span class="bg-pink padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom   font-size16  xs-font-size13">
+                                @if (Model.FirstOrDefault(p => p.DayOfWeek == DayOfWeek.Saturday && p.LessonNumber == 2) is null)
+                                {
+                                    
+                                }
+                                else
+                                {
+                                    @Model.FirstOrDefault(p => p.DayOfWeek == DayOfWeek.Saturday && p.LessonNumber == 2).DisciplineName;
+                                }
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="align-middle">11:00am</td>
+                        <td>
+                            <span class="bg-sky padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-black font-size16 xs-font-size13">
+                                @if (Model.FirstOrDefault(p => p.DayOfWeek == DayOfWeek.Monday && p.LessonNumber == 3) is null)
+                                {
+                                    
+                                }
+                                else
+                                {
+                                    @Model.FirstOrDefault(p => p.DayOfWeek == DayOfWeek.Monday && p.LessonNumber == 3).DisciplineName;
+                                }
+                                </span>
+                        </td>
+                        <td>
+                            <span class="bg-green padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom   font-size16  xs-font-size13">
+                                 @if (Model.FirstOrDefault(p => p.DayOfWeek == DayOfWeek.Tuesday && p.LessonNumber == 3) is null)
+                                {
+                                    
+                                }
+                                else
+                                {
+                                    @Model.FirstOrDefault(p => p.DayOfWeek == DayOfWeek.Tuesday && p.LessonNumber == 3).DisciplineName;
+                                }
+                            </span>
+
+                        </td>
+                        <td> 
+                            <span class="bg-yellow padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom   font-size16  xs-font-size13">
+                                @if (Model.FirstOrDefault(p => p.DayOfWeek == DayOfWeek.Wednesday && p.LessonNumber == 3) is null)
+                                {
+                                    
+                                }
+                                else
+                                {
+                                    @Model.FirstOrDefault(p => p.DayOfWeek == DayOfWeek.Wednesday && p.LessonNumber == 3).DisciplineName;
+                                }
+                            </span>
+                        </td>
+                        <td> 
+                            <span class="bg-sky padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom   font-size16  xs-font-size13">
+                                 @if (Model.FirstOrDefault(p => p.DayOfWeek == DayOfWeek.Thursday && p.LessonNumber == 3) is null)
+                                {
+                                    
+                                }
+                                else
+                                {
+                                    @Model.FirstOrDefault(p => p.DayOfWeek == DayOfWeek.Thursday && p.LessonNumber == 3).DisciplineName;
+                                }
+                            </span>
+                        </td>
+                        <td>
+                            <span class="bg-purple padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom   font-size16  xs-font-size13">
+                                 @if (Model.FirstOrDefault(p => p.DayOfWeek == DayOfWeek.Friday && p.LessonNumber == 3) is null)
+                                {
+                                    
+                                }
+                                else
+                                {
+                                    @Model.FirstOrDefault(p => p.DayOfWeek == DayOfWeek.Friday && p.LessonNumber == 3).DisciplineName;
+                                }
+                            </span>
+                        </td>
+                        <td> 
+                            <span class="bg-pink padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom   font-size16  xs-font-size13">
+                                 @if (Model.FirstOrDefault(p => p.DayOfWeek == DayOfWeek.Saturday && p.LessonNumber == 3) is null)
+                                {
+                                    
+                                }
+                                else
+                                {
+                                    @Model.FirstOrDefault(p => p.DayOfWeek == DayOfWeek.Saturday && p.LessonNumber == 3).DisciplineName;
+                                }
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="align-middle">12:00pm</td>
+                        <td>
+                            <span  class="bg-sky padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-black font-size16 xs-font-size13">
+                                 @if (Model.FirstOrDefault(p => p.DayOfWeek == DayOfWeek.Monday && p.LessonNumber == 4) is null)
+                                {
+                                    
+                                }
+                                else
+                                {
+                                    @Model.FirstOrDefault(p => p.DayOfWeek == DayOfWeek.Monday && p.LessonNumber == 4).DisciplineName;
+                                }
+                            </span>
+                        </td>
+                        <td>
+                            <span  class="bg-green padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom   font-size16  xs-font-size13">
+                                @if (Model.FirstOrDefault(p => p.DayOfWeek == DayOfWeek.Tuesday && p.LessonNumber == 4) is null)
+                                {
+                                    
+                                }
+                                else
+                                {
+                                    @Model.FirstOrDefault(p => p.DayOfWeek == DayOfWeek.Tuesday && p.LessonNumber == 4).DisciplineName;
+                                }
+                            </span>
+
+                        </td>
+                        <td> 
+                            <span class="bg-yellow padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom   font-size16  xs-font-size13">
+                                @if (Model.FirstOrDefault(p => p.DayOfWeek == DayOfWeek.Wednesday && p.LessonNumber == 4) is null)
+                                {
+                                    
+                                }
+                                else
+                                {
+                                    @Model.FirstOrDefault(p => p.DayOfWeek == DayOfWeek.Wednesday && p.LessonNumber == 4).DisciplineName;
+                                }
+                            </span>
+                        </td>
+                        <td>
+                             <span class="bg-sky padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom   font-size16  xs-font-size13">
+                                 @if (Model.FirstOrDefault(p => p.DayOfWeek == DayOfWeek.Thursday && p.LessonNumber == 4) is null)
+                                {
+                                    
+                                }
+                                else
+                                {
+                                    @Model.FirstOrDefault(p => p.DayOfWeek == DayOfWeek.Thursday && p.LessonNumber == 4).DisciplineName;
+                                }
+                            </span>
+                        </td>
+                        <td> 
+                            <span class="bg-purple padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom   font-size16  xs-font-size13">
+                                @if (Model.FirstOrDefault(p => p.DayOfWeek == DayOfWeek.Friday && p.LessonNumber == 4) is null)
+                                {
+                                    
+                                }
+                                else
+                                {
+                                    @Model.FirstOrDefault(p => p.DayOfWeek == DayOfWeek.Friday && p.LessonNumber == 4).DisciplineName;
+                                }
+                            </span>
+                        </td>
+                        <td> 
+                            <span class="bg-pink padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom  font-size16  xs-font-size13">
+                                @if (Model.FirstOrDefault(p => p.DayOfWeek == DayOfWeek.Saturday && p.LessonNumber == 4) is null)
+                                {
+                                    
+                                }
+                                else
+                                {
+                                    @Model.FirstOrDefault(p => p.DayOfWeek == DayOfWeek.Saturday && p.LessonNumber == 4).DisciplineName;
+                                }
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="align-middle">01:00pm</td>
+                        <td>
+                            <span class="bg-sky padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-black font-size16 xs-font-size13">
+                                 @if (Model.FirstOrDefault(p => p.DayOfWeek == DayOfWeek.Monday && p.LessonNumber == 5) is null)
+                                {
+                                    
+                                }
+                                else
+                                {
+                                    @Model.FirstOrDefault(p => p.DayOfWeek == DayOfWeek.Monday && p.LessonNumber == 5).DisciplineName;
+                                }
+                            </span>
+                        </td>
+                        <td>
+                            <span class="bg-green padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom   font-size16  xs-font-size13">
+                                @if (Model.FirstOrDefault(p => p.DayOfWeek == DayOfWeek.Tuesday && p.LessonNumber == 5) is null)
+                                {
+                                    
+                                }
+                                else
+                                {
+                                    @Model.FirstOrDefault(p => p.DayOfWeek == DayOfWeek.Tuesday && p.LessonNumber == 5).DisciplineName;
+                                } 
+                            </span>
+
+                        </td>
+                        <td> 
+                            <span class="bg-yellow padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom   font-size16  xs-font-size13">
+                                @if (Model.FirstOrDefault(p => p.DayOfWeek == DayOfWeek.Wednesday && p.LessonNumber == 5) is null)
+                                {
+                                    
+                                }
+                                else
+                                {
+                                    @Model.FirstOrDefault(p => p.DayOfWeek == DayOfWeek.Wednesday && p.LessonNumber == 5).DisciplineName;
+                                }
+                            </span>
+                        </td>
+                        <td> 
+                            <span   class="bg-sky padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom  font-size16  xs-font-size13">
+                                @if (Model.FirstOrDefault(p => p.DayOfWeek == DayOfWeek.Thursday && p.LessonNumber == 5) is null)
+                                {
+                                    
+                                }
+                                else
+                                {
+                                    @Model.FirstOrDefault(p => p.DayOfWeek == DayOfWeek.Thursday && p.LessonNumber == 5).DisciplineName;
+                                }
+                            </span>
+                        </td>
+                        <td> 
+                            <span class="bg-purple padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom  font-size16  xs-font-size13">
+                                @if (Model.FirstOrDefault(p => p.DayOfWeek == DayOfWeek.Friday && p.LessonNumber == 5) is null)
+                                {
+                                    
+                                }
+                                else
+                                {
+                                    @Model.FirstOrDefault(p => p.DayOfWeek == DayOfWeek.Friday && p.LessonNumber == 5).DisciplineName;
+                                }
+                            </span>
+                        </td>
+                        <td> 
+                            <span class="bg-pink padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom  font-size16  xs-font-size13">
+                                @if (Model.FirstOrDefault(p => p.DayOfWeek == DayOfWeek.Saturday && p.LessonNumber == 5) is null)
+                                {
+                                    
+                                }
+                                else
+                                {
+                                    @Model.FirstOrDefault(p => p.DayOfWeek == DayOfWeek.Saturday && p.LessonNumber ==  5).DisciplineName;
+                                }
+                            </span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+}
